@@ -19,7 +19,7 @@ function App() {
             id: "e4",
             title: "목재 책상",
             amount: 450,
-            date: new Date(2021, 5, 12),
+            date: new Date(2021, 5, 3),
         },
     ];
 
