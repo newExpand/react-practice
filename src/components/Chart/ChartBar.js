@@ -18,8 +18,4 @@ const ChartBar = (props) => {
     );
 };
 
-{
-    /* <ChartBar key={dataPoint.id} value={dataPoint.value} maxValue={null} label={dataPoint.label} />; */
-}
-
 export default ChartBar;
