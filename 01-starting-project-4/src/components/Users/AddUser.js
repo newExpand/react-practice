@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Button from "../UI/Button";
 import Card from "../UI/Card";
+import ErrorModal from "../UI/ErrorModal";
 import classes from "./AddUser.module.css";
 
 const AddUser = (props) => {
@@ -30,15 +31,18 @@ const AddUser = (props) => {
     };
 
     return (
-        <Card className={classes.input}>
-            <form onSubmit={addUserHandler}>
-                <label htmlFor="username">이름</label>
-                <input type="text" id="username" value={enteredUsername} onChange={usernameChangeHandler} />
-                <label htmlFor="age">나이</label>
-                <input type="number" id="age" value={enteredAge} onChange={ageChangeHandler} />
-                <Button type="submit">유저 추가하기</Button>
-            </form>
-        </Card>
+        <div>
+            <ErrorModal title="에러 발생" message="무언가 단단히 잘못됨" />
+            <Card className={classes.input}>
+                <form onSubmit={addUserHandler}>
+                    <label htmlFor="username">이름</label>
+                    <input type="text" id="username" value={enteredUsername} onChange={usernameChangeHandler} />
+                    <label htmlFor="age">나이</label>
+                    <input type="number" id="age" value={enteredAge} onChange={ageChangeHandler} />
+                    <Button type="submit">유저 추가하기</Button>
+                </form>
+            </Card>
+        </div>
     );
 };
 
