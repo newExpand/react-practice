@@ -10,6 +10,7 @@ function App() {
     useEffect(() => {
         const storedUserLoggedInInformation = localStorage.getItem("isLoggedIn");
 
+        // useEffect를 사용하지 않고 아래 조건문을 사용했을 시 useState함수를 계속 불러와 무한 렌더링이 된다.
         if (storedUserLoggedInInformation === "1") {
             setIsLoggedIn(true);
         }
