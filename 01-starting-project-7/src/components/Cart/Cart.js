@@ -12,14 +12,16 @@ const Cart = (props) => {
     );
 
     return (
-        <Modal>
+        <Modal onHideCart={props.onHideCart}>
             {cartItems}
             <div className={classes.total}>
                 <span>총 금액</span>
                 <span>44000</span>
             </div>
             <div className={classes.actions}>
-                <button className={classes["button--alt"]}>닫기</button>
+                <button className={classes["button--alt"]} onClick={props.onHideCart}>
+                    닫기
+                </button>
                 <button className={classes.button}>주문하기</button>
             </div>
         </Modal>
