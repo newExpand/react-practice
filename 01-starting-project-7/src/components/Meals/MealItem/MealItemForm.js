@@ -22,7 +22,18 @@ const MealItemForm = (props) => {
 
     return (
         <form className={classes.form} onSubmit={submitHandler}>
-            <Input ref={amountInputRef} label="개수" input={{ id: "amount_" + props.id, type: "number", min: "1", max: "5", step: "1", defaultValue: "1" }} />
+            <Input
+                ref={amountInputRef}
+                label="개수"
+                input={{
+                    id: "amount_" + props.id,
+                    type: "number",
+                    min: "1",
+                    max: "5",
+                    step: "1",
+                    defaultValue: "1",
+                }}
+            />
             <button>추가하기</button>
             {!amountIsValid && <p>1에서 5사이의 값만 입력 가능합니다.</p>}
         </form>
