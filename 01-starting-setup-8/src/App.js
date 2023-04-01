@@ -35,16 +35,24 @@ function App() {
 
     */
     const [showParagraph, setShowParagraph] = useState(false);
+    const [allowToggle, setAllowToggle] = useState(false);
 
     const toggleParagraphHandler = useCallback(() => {
-        setShowParagraph((prevShowParagraph) => !prevShowParagraph);
-    }, []);
+        if (allowToggle) {
+            setShowParagraph((prevShowParagraph) => !prevShowParagraph);
+        }
+    }, [allowToggle]);
+
+    const allowToggleHandler = () => {
+        setAllowToggle(true);
+    };
 
     return (
         <div className="app">
             <h1>헤이 안뇽안뇽!</h1>
-            <DemoOutput show={false} />
-            <Button onClick={toggleParagraphHandler}>발작버튼</Button>
+            <DemoOutput show={showParagraph} />
+            <Button onClick={allowToggleHandler}>발작버튼</Button>
+            <Button onClick={toggleParagraphHandler}>토글버튼</Button>
         </div>
     );
 }
