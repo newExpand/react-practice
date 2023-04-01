@@ -36,8 +36,6 @@ function App() {
     */
     const [showParagraph, setShowParagraph] = useState(false);
 
-    console.log("실행중");
-
     const toggleParagraphHandler = () => {
         setShowParagraph((prevShowParagraph) => !prevShowParagraph);
     };
@@ -45,7 +43,7 @@ function App() {
     return (
         <div className="app">
             <h1>헤이 안뇽안뇽!</h1>
-            <DemoOutput show={showParagraph} />
+            <DemoOutput show={false} />
             <Button onClick={toggleParagraphHandler}>발작버튼</Button>
         </div>
     );
