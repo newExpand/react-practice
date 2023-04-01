@@ -66,3 +66,9 @@ props의 신규 값을 확인한 뒤 이를 기존의 props의 값과 비교하�
 모든 컴포넌트를 React.memo로 래핑할 필요는 없다. 대신, 컴포넌트 트리에서 잘라낼 수 있는 몇 가지의 주요 컴포넌트 부분을 선택해서 사용하면 된다. 모든 자식 컴포넌트에 대한 작업보다 훨씬 효과적일 것이다.<br>
 
 ### useCallback
+
+객체는 참조타입이기 때문에 정적타입과 다르게 안에 있는 값이 같다고 해서 변수들 값까지 똑같진 않다. 그 이유는 같은 메모리 안의 같은 위치를 가리키지 않기 때문인데 그런 이유와 같이 01-starting-setup-8에 Button 컴포넌트를 memo메서드를 사용해 감싸도 App컴포넌트에서 Button 컴포넌트에 onClick으로 날리는 함수 toggleParagraphHandler가 같은 메모리로 인식을 못하기 때문에 버튼 클릭시 console.log("Button 실행")이 계속 실행되는 걸 볼 수 있다.<br>
+
+그렇다면, toggleParagraphHandler를 같은 함수로 인식하게 해줘야 해결이 될거 같은데 이때 사용하기 좋은게 useCallback이다.<br>
+useCallback은 선택한 함수를 리액트의 내부 저장 공간에 저장해서 함수 객체가 실행될 때마다 이를 재사용할 수 있게 된다. 사용법은 간단하다. 저장하려는 함수를 래핑하기만 하면 된다. 그렇게 함수를 첫번째 인자로 두고 두번째 인자는 useEffect같이 의존성 배열을 전달해 주면 된다.<br>
+toggleParagraphHandler를 useCallback으로 감싸준 뒤 다시 버튼을 클릭하니 console.log("Button 실행")이 실행되지 않는걸 볼 수 있다.
