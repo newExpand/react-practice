@@ -11,12 +11,14 @@ const SimpleInput = (props) => {
     const formSubmissionHandler = (e) => {
         e.preventDefault();
 
+        if (enteredName.trim() === "") return;
+
         console.log(enteredName);
         const enteredValue = nameInputRef.current.value;
 
         console.log(enteredValue);
 
-        nameInputRef.current.value = "";
+        // nameInputRef.current.value = ""; 이 방법은 직접적으로 DOM을 바꾸기 때문에 지양하는게 좋다. 리액트를 사용해 돔을 조작하도록 한다.
         setEnteredName("");
     };
 
