@@ -1,19 +1,18 @@
-import { useRef, useState, useEffect } from "react";
+import { useState } from "react";
 
 const SimpleInput = (props) => {
-    const nameInputRef = useRef();
     const [enteredName, setEnteredName] = useState("");
-    const [enteredNameIsValid, setEnteredNameIsValid] = useState(false);
     const [enteredNameTouched, setEnteredNameTouched] = useState(false);
 
-    useEffect(() => {
-        if (enteredNameIsValid) {
-            console.log("확인용");
-        }
-    }, [enteredNameIsValid]);
+    const enteredNameIsValid = enteredName.trim() !== "";
+    const nameInputIsInvalid = !enteredNameIsValid && enteredNameTouched;
 
     const nameInputChangeHandler = (e) => {
         setEnteredName(e.target.value);
+    };
+
+    const nameInputBlurHandler = (e) => {
+        setEnteredNameTouched(true);
     };
 
     const formSubmissionHandler = (e) => {
@@ -21,23 +20,14 @@ const SimpleInput = (props) => {
 
         setEnteredNameTouched(true);
 
-        if (enteredName.trim() === "") {
-            setEnteredNameIsValid(false);
+        if (!enteredNameIsValid) {
             return;
         }
 
-        setEnteredNameIsValid(true);
-
-        console.log(enteredName);
-        const enteredValue = nameInputRef.current.value;
-
-        console.log(enteredValue);
-
         // nameInputRef.current.value = ""; 이 방법은 직접적으로 DOM을 바꾸기 때문에 지양하는게 좋다. 리액트를 사용해 돔을 조작하도록 한다.
         setEnteredName("");
+        setEnteredNameTouched(false);
     };
-
-    const nameInputIsInvalid = !enteredNameIsValid && enteredNameTouched;
 
     const nameInputClasses = nameInputIsInvalid ? "form-control invalid" : "form-control";
 
@@ -46,11 +36,11 @@ const SimpleInput = (props) => {
             <div className={nameInputClasses}>
                 <label htmlFor="name">Your Name</label>
                 <input
-                    ref={nameInputRef}
                     value={enteredName}
                     type="text"
                     id="name"
                     onChange={nameInputChangeHandler}
+                    onBlur={nameInputBlurHandler}
                 />
                 {nameInputIsInvalid && <p className="error-text">이름이 비어있습니다.</p>}
             </div>
