@@ -1,9 +1,16 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 
 const SimpleInput = (props) => {
     const nameInputRef = useRef();
     const [enteredName, setEnteredName] = useState("");
-    const [enteredNameIsValid, setEnteredNameIsValid] = useState(true);
+    const [enteredNameIsValid, setEnteredNameIsValid] = useState(false);
+    const [enteredNameTouched, setEnteredNameTouched] = useState(false);
+
+    useEffect(() => {
+        if (enteredNameIsValid) {
+            console.log("확인용");
+        }
+    }, [enteredNameIsValid]);
 
     const nameInputChangeHandler = (e) => {
         setEnteredName(e.target.value);
@@ -11,6 +18,8 @@ const SimpleInput = (props) => {
 
     const formSubmissionHandler = (e) => {
         e.preventDefault();
+
+        setEnteredNameTouched(true);
 
         if (enteredName.trim() === "") {
             setEnteredNameIsValid(false);
@@ -28,7 +37,9 @@ const SimpleInput = (props) => {
         setEnteredName("");
     };
 
-    const nameInputClasses = enteredNameIsValid ? "form-control" : "form-control invalid";
+    const nameInputIsInvalid = !enteredNameIsValid && enteredNameTouched;
+
+    const nameInputClasses = nameInputIsInvalid ? "form-control invalid" : "form-control";
 
     return (
         <form onSubmit={formSubmissionHandler}>
@@ -41,7 +52,7 @@ const SimpleInput = (props) => {
                     id="name"
                     onChange={nameInputChangeHandler}
                 />
-                {!enteredNameIsValid && <p className="error-text">이름이 비어있습니다.</p>}
+                {nameInputIsInvalid && <p className="error-text">이름이 비어있습니다.</p>}
             </div>
             <div className="form-actions">
                 <button>Submit</button>
