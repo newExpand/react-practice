@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import useInput from "../hooks/use-input";
 
 const SimpleInput = (props) => {
