@@ -20,6 +20,7 @@ const Counter = () => {
             <div className={classes.value}>{counter}</div>
             <div>
                 <button onClick={incrementHandler}>증가</button>
+                <button onClick={incrementHandler}>5씩 증가</button>
                 <button onClick={decrementHandler}>감소</button>
             </div>
             <button onClick={toggleCounterHandler}>Toggle Counter</button>
