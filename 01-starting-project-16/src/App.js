@@ -1,6 +1,7 @@
 import { createBrowserRouter, RouterProvider, createRoutesFromElements, Route } from "react-router-dom";
 import HomePage from "./pages/Home";
 import Products from "./pages/Products";
+import RootLayout from "./pages/Root";
 
 // JSX코드로 라우트를 설정했던 방식(예전엔 이랬음)
 // const routeDefinitions = createRoutesFromElements(
@@ -13,8 +14,14 @@ import Products from "./pages/Products";
 // const router = createBrowserRouter(routeDefinitions);
 
 const router = createBrowserRouter([
-    { path: "/", element: <HomePage /> },
-    { path: "/products", element: <Products /> },
+    {
+        path: "/",
+        element: <RootLayout />,
+        children: [
+            { path: "/", element: <HomePage /> },
+            { path: "/products", element: <Products /> },
+        ],
+    },
 ]);
 
 function App() {
