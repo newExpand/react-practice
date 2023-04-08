@@ -2,6 +2,7 @@ import { createBrowserRouter, RouterProvider, createRoutesFromElements, Route } 
 import HomePage from "./pages/Home";
 import Products from "./pages/Products";
 import RootLayout from "./pages/Root";
+import ErrorPage from "./pages/Error";
 
 // JSX코드로 라우트를 설정했던 방식(예전엔 이랬음)
 // const routeDefinitions = createRoutesFromElements(
@@ -17,6 +18,7 @@ const router = createBrowserRouter([
     {
         path: "/",
         element: <RootLayout />,
+        errorElement: <ErrorPage />,
         children: [
             { path: "/", element: <HomePage /> },
             { path: "/products", element: <Products /> },
