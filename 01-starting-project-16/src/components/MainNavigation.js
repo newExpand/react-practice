@@ -1,17 +1,32 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import classes from "./MainNavigation.module.css";
 
 const MainNavigation = () => {
+    const navActiveHandler = ({ isActive }) => {
+        return isActive ? classes.active : undefined;
+    };
+
     return (
         <header className={classes.header}>
             <nav>
                 <ul className={classes.list}>
                     <li>
-                        <Link to="/">Home</Link>
+                        <NavLink
+                            to="/"
+                            className={navActiveHandler}
+                            style={({ isActive }) => ({
+                                textAlign: isActive ? "center" : "left",
+                            })}
+                            end
+                        >
+                            Home
+                        </NavLink>
                     </li>
                     <li>
-                        <Link to="/products">상품</Link>
+                        <NavLink to="/products" className={navActiveHandler}>
+                            상품
+                        </NavLink>
                     </li>
                 </ul>
             </nav>
