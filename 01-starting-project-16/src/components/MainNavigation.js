@@ -15,9 +15,12 @@ const MainNavigation = () => {
                         <NavLink
                             to="/"
                             className={navActiveHandler}
+                            /* 
+                            NavLink에서는 style에도 isActive를 활용한 함수형태도 가능하다
                             style={({ isActive }) => ({
                                 textAlign: isActive ? "center" : "left",
-                            })}
+                            })} 
+                            */
                             end
                         >
                             Home
