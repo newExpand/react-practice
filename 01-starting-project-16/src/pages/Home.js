@@ -17,7 +17,7 @@ const Home = () => {
         <>
             <div>나만의 홈페이지</div>
             <p>
-                가보자잇 <Link to="/products">상품을 보러!</Link>
+                가보자잇 <Link to="products">상품을 보러!</Link>
             </p>
             <p>
                 <button onClick={navigateHandler}>네비게이션</button>
