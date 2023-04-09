@@ -11,12 +11,12 @@ function MainNavigation() {
             <nav>
                 <ul className={classes.list}>
                     <li>
-                        <NavLink to="" className={navActiveHandler} end>
+                        <NavLink to="/" className={navActiveHandler} end>
                             Home
                         </NavLink>
                     </li>
                     <li>
-                        <NavLink to="events" className={navActiveHandler}>
+                        <NavLink to="/events" className={navActiveHandler}>
                             Events
                         </NavLink>
                     </li>

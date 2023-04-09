@@ -11,12 +11,12 @@ function EventsNavigation() {
             <nav>
                 <ul className={classes.list}>
                     <li>
-                        <NavLink to="" className={navActiveHandler} end>
+                        <NavLink to="/events" className={navActiveHandler} end>
                             All Events
                         </NavLink>
                     </li>
                     <li>
-                        <NavLink to="new" className={navActiveHandler}>
+                        <NavLink to="/events/new" className={navActiveHandler}>
                             New Event
                         </NavLink>
                     </li>
