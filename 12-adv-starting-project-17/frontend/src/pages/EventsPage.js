@@ -8,9 +8,10 @@ import { useLoaderData } from "react-router-dom";
 // ];
 
 const Eventspage = () => {
-    const eventsData = useLoaderData();
+    const data = useLoaderData();
+    const events = data.events;
 
-    return <EventsList events={eventsData} />;
+    return <EventsList events={events} />;
 };
 
 export default Eventspage;
@@ -19,7 +20,8 @@ export const loader = async () => {
     const response = await fetch("http://localhost:8080/events");
     if (!response.ok) throw new Error("데이터를 받아오지 못했습니다");
 
-    const resData = await response.json();
+    // const resData = await response.json();
+    // const res = new Response("아무 데이터", { status: 201 });
 
-    return resData.events;
+    return response;
 };
