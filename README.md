@@ -141,4 +141,8 @@ Interceptor는 Axios에서 매우 강력한 기능 중 하나이며, 요청과 �
 
 둘째, a 태그를 사용하면 새로운 페이지를 로드하게 되므로 애플리케이션의 성능이 저하될 수 있다. Link 태그는 페이지를 다시 로드하지 않고 컴포넌트를 업데이트하므로 더 나은 성능을 제공한다.
 
-따라서 React에서는 전통적인 a 태그 대신 React Router와 함께 사용되는 Link 태그를 사용하는 것이 좋다.
+따라서 React에서는 전통적인 a 태그 대신 React Router와 함께 사용되는 Link 태그를 사용하는 것이 좋다.<br>
+
+### **loader, useLoaderData에 사용시 유의할 점**
+
+react-router-dom의 loader로 데이터를 보내는 경우 보낸 컴포넌트 보다 하위 컴포넌트에서 useLoaderData로 데이터 전달은 가능하나, 상위 컴포넌트에서는 useLoaderData로 데이터를 받을 수 없다.
