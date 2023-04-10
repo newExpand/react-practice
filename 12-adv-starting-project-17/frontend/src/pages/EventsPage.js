@@ -25,6 +25,7 @@ export const loader = async () => {
     const response = await fetch("http://localhost:8080/events");
     if (!response.ok) {
         // return { isError: true, message: "이벤트데이터를 가져올 수 없습니다." };
+        throw new Response(JSON.stringify({ message: "fetch에 실패했습니다.", status: 500 }));
     }
 
     // const resData = await response.json();
