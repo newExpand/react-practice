@@ -20,22 +20,13 @@
 // 7. EventDetailPage에서 선택한 이벤트의 ID를 출력합니다.
 // BONUS : 모든 /events... 페이지 컴포넌트 위에 <EventNavigation> 컴포넌트를 추가하는 또 다른 (중첩) 레이아웃 경로를 추가합니다.
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Root from "./pages/Root";
 import HomePage from "./pages/HomePage";
-import EventsPage from "./pages/EventsPage";
+import EventRoot from "./pages/EventRoot";
+import EventsPage, { loader as eventsLoader } from "./pages/EventsPage";
 import EventDetailPage from "./pages/EventDetailPage";
 import NewEventPage from "./pages/NewEventPage";
 import EditEventPage from "./pages/EditEventPage";
-import EventRoot from "./pages/EventRoot";
-import Root from "./pages/Root";
-
-const loadData = async () => {
-    const response = await fetch("http://localhost:8080/events");
-    if (!response.ok) throw new Error("데이터를 받아오지 못했습니다");
-
-    const resData = await response.json();
-
-    return resData.events;
-};
 
 const router = createBrowserRouter([
     {
@@ -47,7 +38,7 @@ const router = createBrowserRouter([
                 path: "events",
                 element: <EventRoot />,
                 children: [
-                    { index: true, element: <EventsPage />, loader: loadData },
+                    { index: true, element: <EventsPage />, loader: eventsLoader },
                     { path: ":pageId", element: <EventDetailPage /> },
                     { path: "new", element: <NewEventPage /> },
                     { path: ":pageId/edit", element: <EditEventPage /> },

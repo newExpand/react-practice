@@ -14,3 +14,12 @@ const Eventspage = () => {
 };
 
 export default Eventspage;
+
+export const loader = async () => {
+    const response = await fetch("http://localhost:8080/events");
+    if (!response.ok) throw new Error("데이터를 받아오지 못했습니다");
+
+    const resData = await response.json();
+
+    return resData.events;
+};
