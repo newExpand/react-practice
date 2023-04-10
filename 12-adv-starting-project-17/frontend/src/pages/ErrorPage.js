@@ -10,7 +10,7 @@ const ErrorPage = () => {
     let message = "단단히 잘못됐습니다.";
 
     if (error.status === 500) {
-        message = JSON.parse(error.data).message;
+        message = error.data.message;
     }
 
     if (error.status === 404) {

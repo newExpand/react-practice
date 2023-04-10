@@ -1,6 +1,6 @@
 import React from "react";
 import EventsList from "../components/EventsList";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, json } from "react-router-dom";
 
 // const DUMMY = [
 //     { id: "1", image: "", title: "냠냠", date: "2023-04-10" },
@@ -25,7 +25,8 @@ export const loader = async () => {
     const response = await fetch("http://localhost:8080/events");
     if (!response.ok) {
         // return { isError: true, message: "이벤트데이터를 가져올 수 없습니다." };
-        throw new Response(JSON.stringify({ message: "fetch에 실패했습니다.", status: 500 }));
+        // throw new Response(JSON.stringify({ message: "fetch에 실패했습니다." }), { status: 500 });
+        throw json({ message: "fetch에 실패했습니다." }, { status: 500 });
     }
 
     // const resData = await response.json();
