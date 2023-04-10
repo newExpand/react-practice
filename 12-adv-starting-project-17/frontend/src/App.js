@@ -28,10 +28,14 @@ import EditEventPage from "./pages/EditEventPage";
 import EventRoot from "./pages/EventRoot";
 import Root from "./pages/Root";
 
-const DUMMY = [
-    { id: "1", image: "", title: "냠냠", date: "2023-04-10" },
-    { id: "2", image: "", title: "쩝쩝", date: "2023-04-12" },
-];
+const loadData = async () => {
+    const response = await fetch("http://localhost:8080/events");
+    if (!response.ok) throw new Error("데이터를 받아오지 못했습니다");
+
+    const resData = await response.json();
+
+    return resData.events;
+};
 
 const router = createBrowserRouter([
     {
@@ -43,7 +47,7 @@ const router = createBrowserRouter([
                 path: "events",
                 element: <EventRoot />,
                 children: [
-                    { index: true, element: <EventsPage events={DUMMY} /> },
+                    { index: true, element: <EventsPage />, loader: loadData },
                     { path: ":pageId", element: <EventDetailPage /> },
                     { path: "new", element: <NewEventPage /> },
                     { path: ":pageId/edit", element: <EditEventPage /> },
