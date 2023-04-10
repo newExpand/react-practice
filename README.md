@@ -145,4 +145,8 @@ Interceptor는 Axios에서 매우 강력한 기능 중 하나이며, 요청과 �
 
 ### **loader, useLoaderData에 사용시 유의할 점**
 
-react-router-dom의 loader로 데이터를 보내는 경우 보낸 컴포넌트 보다 하위 컴포넌트에서 useLoaderData로 데이터 전달은 가능하나, 상위 컴포넌트에서는 useLoaderData로 데이터를 받을 수 없다.
+react-router-dom의 loader로 데이터를 보내는 경우 보낸 컴포넌트 보다 하위 컴포넌트에서 useLoaderData로 데이터 전달은 가능하나, 상위 컴포넌트에서는 useLoaderData로 데이터를 받을 수 없다.<br>
+
+### **react-router-dom의 useFetcher 사용법**
+
+react-router-dom에서 Form을 사용할 시, 해당 url로 넘어가게 된다. 해당 url로 전환하지 않은 채로 action이나 loader와 상호 작용을 하고 싶다면 useFetcher를 사용하는것도 좋은 선택으로 보인다.
