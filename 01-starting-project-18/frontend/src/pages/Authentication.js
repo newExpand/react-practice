@@ -35,5 +35,10 @@ export const action = async ({ request, params }) => {
 
     if (!response.ok) throw json({ message: "사용자을 인증할 수 없습니다." }, { status: 500 });
 
+    const resData = await response.json();
+    const token = resData.token;
+
+    localStorage.setItem("token", token);
+
     return redirect("/");
 };
