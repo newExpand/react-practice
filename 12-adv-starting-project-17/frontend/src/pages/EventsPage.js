@@ -1,6 +1,6 @@
-import React from "react";
+import React, { Suspense } from "react";
 import EventsList from "../components/EventsList";
-import { useLoaderData, json } from "react-router-dom";
+import { useLoaderData, json, defer, Await } from "react-router-dom";
 
 // const DUMMY = [
 //     { id: "1", image: "", title: "냠냠", date: "2023-04-10" },
@@ -8,20 +8,18 @@ import { useLoaderData, json } from "react-router-dom";
 // ];
 
 const Eventspage = () => {
-    const data = useLoaderData();
+    const { events } = useLoaderData();
 
-    // if (data.isError) {
-    //     return <p>{data.message}</p>;
-    // }
-
-    const events = data.events;
-
-    return <EventsList events={events} />;
+    return (
+        <Suspense fallback={<p style={{ textAlign: "center" }}>로딩중...</p>}>
+            <Await resolve={events}>{(loadedEvents) => <EventsList events={loadedEvents} />}</Await>;
+        </Suspense>
+    );
 };
 
 export default Eventspage;
 
-export const loader = async () => {
+const loadEvents = async () => {
     const response = await fetch("http://localhost:8080/events");
     if (!response.ok) {
         // return { isError: true, message: "이벤트데이터를 가져올 수 없습니다." };
@@ -32,5 +30,12 @@ export const loader = async () => {
     // const resData = await response.json();
     // const res = new Response("아무 데이터", { status: 201 });
 
-    return response;
+    const resData = await response.json();
+    return resData.events;
+};
+
+export const loader = () => {
+    return defer({
+        events: loadEvents(),
+    });
 };
