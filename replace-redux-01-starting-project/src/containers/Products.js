@@ -6,6 +6,7 @@ import "./Products.css";
 
 const Products = (props) => {
     const productList = useContext(ProductsContext).products;
+
     return (
         <ul className="products-list">
             {productList.map((prod) => (
