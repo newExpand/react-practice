@@ -8,7 +8,7 @@ let listeners = [];
 let actions = {};
 
 // 커스텀 훅
-export const useStore = () => {
+export const useStore = (shouldListen = true) => {
     // 상태 업데이트 함수
     const setState = useState(globalState)[1];
 
@@ -27,12 +27,16 @@ export const useStore = () => {
 
     // 컴포넌트 마운트 시 리스너 등록, 언마운트 시 리스너 제거
     useEffect(() => {
-        listeners.push(setState);
+        if (shouldListen) {
+            listeners.push(setState);
+        }
 
         return () => {
-            listeners = listeners.filter((li) => li !== setState);
+            if (shouldListen) {
+                listeners = listeners.filter((li) => li !== setState);
+            }
         };
-    }, [setState]);
+    }, [setState, shouldListen]);
 
     // 전역 상태와 디스패치 함수 반환
     return [globalState, dispatch];
