@@ -52,3 +52,17 @@ let course2: string | number = "타입스크립트 뿌시깅"; // 타입 추론�
 course2 = 24;
 
 let userName2: string | string[]; // 이처럼 유니온 타입을 활용해 문자나 문자열 배열이 올 수 있게 할 수도 있음.
+
+// Type Aliases(타입 별칭) 이해하기
+
+// typescript만의 기능임
+type Person = {
+    name: string;
+    age: number;
+};
+
+// 예시1
+let person2: Person;
+
+// 예시2
+let people2: Person[];
