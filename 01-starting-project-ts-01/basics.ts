@@ -66,3 +66,16 @@ let person2: Person;
 
 // 예시2
 let people2: Person[];
+
+// 함수타입
+
+// 예제에서 보다시피 반환값의 타입을 지정해 줄 수 있다. 하지만 타입이 내가 원하는 자료형이면 굳이 명시적으로 정의할 필요는 없다.
+function add(a: number, b: number): number | string {
+    return a + b;
+}
+
+// void 타입(함수에 반환 값이 없다는걸 뜻함)
+
+function printOut(value: any) {
+    console.log(value);
+}
