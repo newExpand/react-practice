@@ -79,3 +79,30 @@ function add(a: number, b: number): number | string {
 function printOut(value: any) {
     console.log(value);
 }
+
+// Generics(제네릭)
+
+function insertAtBeginning(array: any[], value: any) {
+    const newArray = [value, ...array];
+    return newArray;
+}
+
+const demoArray = [1, 2, 3];
+const updatedArray = insertAtBeginning(demoArray, -1);
+
+// 이런 경우 타입스크립트에서 오류를 띄우지 않음
+updatedArray[0].split("");
+
+// 위 같은경우 때문에 아래와 같이 제네릭을 사용한다.
+
+function insertAtBeginning2<T>(array: T[], value: T) {
+    const newArray = [value, ...array];
+    return newArray;
+}
+
+const demoArray2 = [1, 2, 3];
+const updatedArray2 = insertAtBeginning2(demoArray2, -1);
+const stringArray = insertAtBeginning2(["a", "b", "c"], "d");
+
+// 이런 경우 타입스크립트에서 오류를 띄움
+updatedArray2[0].split("");
