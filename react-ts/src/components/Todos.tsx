@@ -1,10 +1,11 @@
 import React from "react";
 
-const Todos = () => {
+const Todos: React.FC<{ items: string[] }> = (props) => {
     return (
         <ul>
-            <li>리액트 배우기</li>
-            <li>타입스크립트 배우기</li>
+            {props.items.map((item) => (
+                <li key={item}>{item}</li>
+            ))}
         </ul>
     );
 };

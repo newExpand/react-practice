@@ -1,11 +1,10 @@
 import React from "react";
 import Todos from "./components/Todos";
-import "./App.css";
 
 function App() {
     return (
         <div>
-            <Todos />
+            <Todos items={["리액트 배우기", "타입스크립트 배우기"]} />
         </div>
     );
 }
